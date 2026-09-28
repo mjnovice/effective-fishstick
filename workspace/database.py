@@ -66,10 +66,17 @@ def initialize_database(include_conversation_categories: bool, seed_saved_catego
                     conversation_id TEXT NOT NULL UNIQUE,
                     category_id TEXT NOT NULL,
                     review_status TEXT NOT NULL,
-                    field_values_json TEXT NOT NULL,
                     created_at TEXT NOT NULL,
                     updated_at TEXT NOT NULL,
                     FOREIGN KEY (conversation_id) REFERENCES conversations(id)
+                    FOREIGN KEY (category_id) REFERENCES categories(id)
+                )
+
+                 CREATE TABLE IF NOT EXISTS categories (
+                    id TEXT PRIMARY KEY,
+                    field_values_json TEXT NOT NULL,
+                    created_at TEXT NOT NULL,
+                    updated_at TEXT NOT NULL
                 )
                 """
             )
